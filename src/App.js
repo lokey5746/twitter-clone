@@ -1,14 +1,15 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import "./App.css";
+import Feed from "./Feed";
 
 function App() {
   return (
     //BEM
     <div className="app">
-      <h2>Twitter Clone</h2>
       <Sidebar />
       {/* Feed */}
+      <Feed />
       {/* Widgets */}
     </div>
   );
