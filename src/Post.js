@@ -11,27 +11,24 @@ function Post({ displayName, username, verified, text, image, avatar }) {
   return (
     <div className="post">
       <div className="post__avatar">
-        <Avatar src="https://i.zoomtventertainment.com/story/Anupama_Parameswaran.jpg?tr=w-400,h-300,fo-auto"></Avatar>
+        <Avatar src={avatar}></Avatar>
       </div>
       <div className="post__body">
         <div className="post__header">
           <div className="post__headerText">
             <h3>
-              Anupama Parameswaran{" "}
+              {displayName}{" "}
               <span className="post__headerSpecial">
-                <VerifiedIcon className="post__badge" />
-                @anupama_parameswaran96
+                {verified && <VerifiedIcon className="post__badge" />}
+                {username}
               </span>
             </h3>
           </div>
           <div className="post__headerDescription">
-            <p>watch my new movie </p>
+            <p>{text}</p>
           </div>
         </div>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Hello_Guru_Prema_Kosame.jpg/220px-Hello_Guru_Prema_Kosame.jpg"
-          alt=""
-        />
+        <img src={image} alt="" />
         <div className="post__footer">
           <ChatBubbleOutlineIcon fontSize="small" />
           <RepeatIcon fontSize="small" />
