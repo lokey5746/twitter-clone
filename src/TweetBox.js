@@ -2,20 +2,22 @@ import { Button, Avatar } from "@material-ui/core";
 import React, { useState } from "react";
 import db from "./firebase";
 import "./TweetBox.css";
+import { useStateValue } from "./Stateprovider";
+
 function TweetBox() {
+  const [{ user }, dispatch] = useStateValue();
   const [tweetMessage, setTweetMessage] = useState("");
   const [tweetImage, setTweetImagae] = useState("");
 
   const sendTweet = (e) => {
     e.preventDefault();
     db.collection("posts").add({
-      displayName: "Anupama Parameswaran",
-      username: "@anupama_parameswaran96",
+      displayName: user.displayName,
+      username: user.email,
       verified: true,
       text: tweetMessage,
       image: tweetImage,
-      avatar:
-        "https://i.zoomtventertainment.com/story/Anupama_Parameswaran.jpg?tr=w-400,h-300,fo-auto",
+      avatar: user.photoURL,
     });
     setTweetMessage("");
     setTweetImagae("");
@@ -24,7 +26,7 @@ function TweetBox() {
     <div className="tweetBox">
       <form>
         <div className="tweetBox__input">
-          <Avatar src="https://i.zoomtventertainment.com/story/Anupama_Parameswaran.jpg?tr=w-400,h-300,fo-auto"></Avatar>
+          <Avatar src={user.photoURL}></Avatar>
           <input
             value={tweetMessage}
             onChange={(e) => setTweetMessage(e.target.value)}
